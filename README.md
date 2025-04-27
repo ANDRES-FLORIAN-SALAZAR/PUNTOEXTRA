@@ -17,7 +17,7 @@ Aplicación web para administrar un catálogo de vehículos con funcionalidades 
 
 1. Clonar repositorio:
 ```bash
-git clone https://github.com/ANDRES-FLORIAN-SALAZAR/gestion-automoviles.git
+git clone https://github.com/ANDRES-FLORIAN-SALAZAR/PUNTOEXTRA.git
 cd gestion-automoviles
 ```
 
@@ -46,7 +46,7 @@ python manage.py runserver
 ## 📂 Estructura del proyecto
 
 ```
-gestion-automoviles/
+PUNTOEXTRA/
 ├── FlorianApp/           # Aplicación principal
 │   ├── static/           # ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3), ![JS](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript), imágenes
 │   ├── templates/        # Plantillas ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5)
