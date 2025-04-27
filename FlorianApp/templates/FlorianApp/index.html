@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Automóviles</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-car"></i> Sistema de Gestión de Automóviles</h1>
+            <p>Administra tu catálogo de vehículos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="form-section">
+            <h2><i class="fas fa-plus-circle"></i> Agregar/Editar Automóvil</h2>
+            <form id="autoForm" method="post" action="{% url 'save_auto' %}">
+                {% csrf_token %}
+                <input type="hidden" id="autoId" name="autoId">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre del automóvil">
+                </div>
+                
+                <div class="form-group">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" required placeholder="Ej: Toyota, Ford, BMW">
+                </div>
+                
+                <div class="form-group">
+                    <label for="modelo">Modelo (Año):</label>
+                    <input type="number" id="modelo" name="modelo" required min="1900" max="2099" placeholder="Ej: 2023">
+                </div>
+                
+                <div class="form-group">
+                    <label for="diseno">Diseño:</label>
+                    <input type="text" id="diseno" name="diseno" required placeholder="Ej: Sedán, SUV, Pickup">
+                </div>
+                
+                <div class="form-group">
+                    <label for="cilindraje">Cilindraje (cc):</label>
+                    <input type="number" id="cilindraje" name="cilindraje" required min="500" placeholder="Ej: 2000">
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Guardar
+                    </button>
+                    <button type="button" id="btnCancelar" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <div class="section-header">
+                <h2><i class="fas fa-list"></i> Lista de Automóviles</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar automóviles...">
+                    <i class="fas fa-search search-icon" title="Buscar"></i>
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="autoTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Diseño</th>
+                            <th>Cilindraje</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="autoTableBody">
+                    </tbody>
+                </table>
+                <div id="emptyMessage" class="empty-message hidden">
+                    <i class="fas fa-info-circle"></i> 
+                    No hay automóviles registrados. ¡Añade uno nuevo!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h3>
+            <p>¿Estás seguro de que deseas eliminar este automóvil?</p>
+            <div class="modal-buttons">
+                <button id="confirmDelete" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+                <button id="cancelDelete" class="btn btn-secondary">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+        <button id="closeNotification"><i class="fas fa-times"></i></button>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - Sistema de Gestión de Automóviles</p>
+        </div>
+    </footer>
+    
+    <script src="{% static 'FlorianApp/js/script.js' %}"></script>
+</body>
+</html>
